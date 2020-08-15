@@ -8,7 +8,10 @@ pipeline {
                 }
             }
             steps {
-                sh 'python3 -m flask run hello/hello.py ' 
+                sh  '''
+                    pip install -r requirements.txt
+                    python3 -m flask run hello/hello.py 
+                    ''' 
             }
         }
     }
