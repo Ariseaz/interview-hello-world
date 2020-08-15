@@ -1,19 +1,15 @@
 pipeline {
-  agent { docker { image 'python:3.7.2' } }
-  stages {
-    stage('build') {
-      steps {
-        sh  '''
-                python -m venv .venv
-                . .venv/bin/activate
-                pip install -r requirements.txt'
-            '''
-      }
+    agent none 
+    stages {
+        stage('Build') { 
+            agent {
+                docker {
+                    image 'python:3.7.2' 
+                }
+            }
+            steps {
+                sh 'export FLASK_APP=hello/hello.py python3 -m flask run' 
+            }
+        }
     }
-    stage('Unit Test') {
-      steps {
-        sh 'pytest -v'
-      }   
-    }
-  }
 }
