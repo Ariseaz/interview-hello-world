@@ -12,18 +12,13 @@ pipeline {
                         python -m venv .venv
                         . .venv/bin/activate
                         pip install -r requirements.txt
-                        python3 -m flask run hello/hello.py 
+                        python3 -m flask run hello 
                     ''' 
             }
         }
         stage('Test') { 
-            agent {
-                docker {
-                    image 'qnib/pytest' 
-                }
-            }
             steps {
-                sh 'py.test --junit-xml test-reports/results.xml tests' 
+                sh 'pytest -v --junit-xml test-reports/results.xml' 
             }
             post {
                 always {
