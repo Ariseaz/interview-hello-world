@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'export FLASK_APP=hello/hello.py python3 -m flask run' 
+                sh 'python3 -m flask run hello/hello.py ' 
             }
         }
     }
