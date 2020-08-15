@@ -12,7 +12,7 @@ pipeline {
                         python -m venv .venv
                         . .venv/bin/activate
                         pip install -r requirements.txt
-                        python3 -m flask run hello 
+                        python3 -m flask run hello.py 
                     ''' 
             }
         }
