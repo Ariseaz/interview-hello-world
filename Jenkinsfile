@@ -17,9 +17,11 @@ pipeline {
       // copy source code from local file system and test
       // for a Dockerfile to build the Docker image
       steps {
+        sh '''
         if (!fileExists("Dockerfile")) {
             error('Dockerfile missing.')
         }
+        '''
       }
    }
 
