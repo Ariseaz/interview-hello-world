@@ -8,13 +8,7 @@ node {
       }
    }
 
-   stage('Test') {
-            agent {
-                docker {
-                    image 'python:3.7.2'
-                }
-            }
-            steps {
+   steps {
                 sh '''
                     python -m venv .venv
                     . .venv/bin/activate
@@ -22,8 +16,6 @@ node {
                     pytest -v
                 ''' 
             }
-            
-        }
 
    stage('Build Stage') {
        // build the docker image from the source code using the BUILD_ID parameter in image name
