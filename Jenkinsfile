@@ -1,4 +1,3 @@
-
 pipeline {
   agent { docker { image 'python:3.7.2' } }
   stages {
@@ -13,6 +12,13 @@ pipeline {
             ''' 
       }   
     }
+
+    stage('Build Docker') {
+       // build the docker image from the source code using the BUILD_ID parameter in image name
+         sh "sudo docker build -t flask-app ."
+   }
     
+
+
   }
 }
