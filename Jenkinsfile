@@ -12,7 +12,7 @@ node {
       // run the unit tests
       
          sh "pip install -r requirements.txt"
-         sh "python -m pytest tests/test_app.py"
+         sh "pytest -v"
       
    }
 
