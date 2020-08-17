@@ -8,14 +8,15 @@ node {
       }
    }
 
-   steps {
-                sh '''
-                    python -m venv .venv
-                    . .venv/bin/activate
-                    pip install -r requirements.txt
-                    pytest -v
-                ''' 
-            }
+   stage('Unit Test') {
+      // run the unit tests
+      
+         sh "python -m venv .venv"
+         sh ". .venv/bin/activate"
+         sh "pip install -r requirements.txt"
+         sh "python -m pytest tests/test_app.py"
+      
+   }
 
    stage('Build Stage') {
        // build the docker image from the source code using the BUILD_ID parameter in image name
