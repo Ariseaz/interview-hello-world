@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'export FLASK_APP=hello/hello.py python3 flask run'
+                sh 'export FLASK_APP=hello/hello.py python3 -m flask run'
             }
         }
         stage('Test') {
@@ -32,22 +32,13 @@ pipeline {
         }
         stage('Deliver') { 
             agent any
-            environment { 
-                VOLUME = '$(pwd)/sources:/src'
-                IMAGE = 'cdrx/pyinstaller-linux:python2'
             }
             steps {
-                dir(path: env.BUILD_ID) { 
-                    unstash(name: 'compiled-results') 
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'pyinstaller -F add2vals.py'" 
+                dir(/var/lib/jenkins/workspace/interview) { 
+                    sh "docker build -t flask ." 
                 }
             }
-            post {
-                success {
-                    archiveArtifacts "${env.BUILD_ID}/sources/dist/add2vals" 
-                    sh "docker run --rm -v ${VOLUME} ${IMAGE} 'rm -rf build dist'"
-                }
-            }
+            
         }
     }
 }
