@@ -17,6 +17,8 @@ pipeline {
        // build the docker image from the source code using the BUILD_ID parameter in image name
         steps {
          sh '''
+              python -m venv .venv
+              . .venv/bin/activate
               cd /var/lib/jenkins/workspace/interview
               docker build -t flask-app .
             '''
