@@ -7,7 +7,17 @@ node {
          error('Dockerfile missing.')
       }
    }
-   stage('Build Docker') {
+
+   stage('Unit Test') {
+      // run the unit tests
+      {
+         sh ". .env/bin/activate"
+         sh "pip install -r requirements.txt"
+         sh "python -m pytest tests/test_app.py"
+      }
+   }
+
+   stage('Build Stage') {
        // build the docker image from the source code using the BUILD_ID parameter in image name
          sh "sudo docker build -t flask-app ."
    }
