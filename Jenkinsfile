@@ -18,7 +18,7 @@ pipeline {
         steps {
          sh '''
               cd /var/lib/jenkins/workspace/interview
-              docker build -t flask-app ."
+              docker build -t flask-app .
             '''
         }
    }
