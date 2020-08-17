@@ -16,13 +16,11 @@ pipeline {
     stage('Get Source') {
       // copy source code from local file system and test
       // for a Dockerfile to build the Docker image
-      steps {
-        sh '''
-        if (!fileExists("Dockerfile")) {
+        
+        if (!fileExists("Dockerfile") {
             error('Dockerfile missing.')
         }
-        '''
-      }
+        
    }
 
     stage('Build Docker') {
