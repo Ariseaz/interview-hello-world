@@ -13,16 +13,6 @@ pipeline {
       }   
     }
 
-    stage('Get Source') {
-      // copy source code from local file system and test
-      // for a Dockerfile to build the Docker image
-        
-        if (!fileExists("Dockerfile") {
-            error('Dockerfile missing.')
-        }
-        
-   }
-
     stage('Build Docker') {
        // build the docker image from the source code using the BUILD_ID parameter in image name
         steps {
