@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'export FLASK_APP=hello/hello.py python3 -m flask run'
+                sh 'export FLASK_APP=hello/hello.py python3 flask run'
             }
         }
         stage('Test') {
